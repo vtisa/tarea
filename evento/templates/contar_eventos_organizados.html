@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            {% if usuario_email is None %}
+            <h1 class="mb-4">Contar eventos organizados por usuario</h1>
+            <form method="get" action="{% url 'contar_eventos_organizados' %}">
+                <div class="mb-3">
+                    <label for="usuario_email" class="form-label">Email de usuario:</label>
+                    <input type="email" class="form-control" id="usuario_email" name="usuario_email" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Contar eventos organizados</button>
+            </form>
+            {% else %}
+            <h1 class="mb-4">Número de eventos organizados por {{ usuario_email }}</h1>
+            <p class="lead">{{ count }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+{% endblock %}

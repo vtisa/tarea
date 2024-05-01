@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="mb-4">Usuarios más activos</h1>
+            {% if usuarios_mas_activos %}
+            <ul class="list-group">
+                {% for usuario in usuarios_mas_activos %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ usuario.nombre }}
+                    <span class="badge bg-primary rounded-pill">{{ usuario.num_eventos }} eventos</span>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No hay usuarios aún.</p>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <h1 class="mb-4">Usuarios menos activos</h1>
+            {% if usuarios_menos_activos %}
+            <ul class="list-group">
+                {% for usuario in usuarios_menos_activos %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ usuario.nombre }}
+                    <span class="badge bg-primary rounded-pill">{{ usuario.num_eventos }} eventos</span>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No hay usuarios aún.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

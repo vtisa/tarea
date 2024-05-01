@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h1 class="mb-4">Número de usuarios registrados en el evento</h1>
+            <form method="get" action="{% url 'contar_registros' %}">
+                <div class="mb-3">
+                    <label for="evento_id" class="form-label">Ingresa el ID del evento:</label>
+                    <input type="number" class="form-control" id="evento_id" name="evento_id">
+                </div>
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </form>
+            {% if evento %}
+            <h2 class="mt-4">Evento: {{ evento.titulo }}</h2>
+            <p class="lead">Número de usuarios registrados: {{ count }}</p>
+            {% elif mensaje %}
+            <p class="lead">{{ mensaje }}</p>
+            {% else %}
+            <p class="lead">No se ha seleccionado ningún evento.</p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

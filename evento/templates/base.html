@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Gestión de Eventos</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item {% if request.resolver_match.view_name == 'crear_usuario' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'crear_usuario' %}">Crear Usuario</a>
+                    </li>
+                    <li class="nav-item {% if request.resolver_match.view_name == 'crear' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'crear' %}">Crear Evento</a>
+                    </li>
+                    <li class="nav-item {% if request.resolver_match.view_name == 'listar_evento' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'listar_evento' %}">Lista de Eventos</a>
+                    </li>
+                    <li class="nav-item {% if request.resolver_match.view_name == 'registrar' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'registrar' %}">Registrarse en Evento</a>
+                    </li>
+                    <li class="nav-item {% if request.resolver_match.view_name == 'listar_registros' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'listar_registros' %}">Lista de Registros</a>
+                    </li>
+                    <li class="nav-item {% if request.resolver_match.view_name == 'contar_mes_actual' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'contar_mes_actual' %}">N° de eventos en este mes</a>
+                    </li>
+                    <li class="nav-item {% if request.resolver_match.view_name == 'usuarios_activos' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'usuarios_activos' %}">Actividad de usuarios</a>
+                    </li>
+                    <li class="nav-item {% if request.resolver_match.view_name == 'contar_registros' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'contar_registros' %}">Contar usuarios en evento</a>
+                    </li>
+                    <li class="nav-item {% if request.resolver_match.view_name == 'contar_eventos_organizados' %}active{% endif %}">
+                        <a class="nav-link" href="{% url 'contar_eventos_organizados' %}">Eventos organizados por usuario</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        {% block content %}{% endblock %}
+    </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

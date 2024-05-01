@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            {% if eventos %}
+            {% for evento in eventos %}
+            {% if forloop.counter0|divisibleby:3 %}
+            <div class="row">
+            {% endif %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ evento.titulo }}</h2>
+                        <p class="card-text">Descripción: {{ evento.descripcion }}</p>
+                        <p class="card-text">Fecha de inicio: {{ evento.fecha_inicio }}</p>
+                        <p class="card-text">Fecha de fin: {{ evento.fecha_fin }}</p>
+                        <p class="card-text">Organizador: {{ evento.organizador }}</p>
+                        <form action="{% url 'eliminar_evento' evento.id %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Eliminar</button>
+                        </form>
+                        <a href="{% url 'actualizar_evento' evento.id %}" class="btn btn-primary">Actualizar</a>
+                    </div>
+                </div>
+            </div>
+            {% if forloop.last or forloop.counter|divisibleby:3 %}
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% else %}
+            <h1 class="text-center">No hay eventos que listar.</h1>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
